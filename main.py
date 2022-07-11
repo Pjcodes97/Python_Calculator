@@ -1,75 +1,59 @@
 import tkinter as tk
 
+#Global variable to adjust Calculator after first eval is performed
+is_result = False
+
 # Calculation and Display Change Functions
 
-#Changes/adds to the display number at top of calculator
+#Changes/adds to both display numbers at the top of the calculator
 def button_press(button_num):
-    if display['text'] == '0':
+    global is_result
+    if is_result == False:
+        if display['text'] == '0':
+            display['text'] = str(button_num)
+        else:
+            display['text'] = display['text'] + str(button_num)
+        secondary_display['text'] += str(button_num)
+    elif is_result == True:
         display['text'] = str(button_num)
-    else:
-        display['text'] = display['text'] + str(button_num)
-    secondary_display['text'] += str(button_num)
+        secondary_display['text'] = str(button_num)
+        is_result = False
 
-#sets first num to be used in math operation & resets the display to 0 for next input, sets what the math operation will be.
-#Checks if first num has already been set, if so it runs equals_button function before continuing with is normal function.
+    
+
+#Creates equation in secondary display to be evaluated by equals_button function, resets display for next number.
 def calc_button(symbol):
-    global num1, symbol_pressed, display
-    if num1 == 0:
-        num1 = float(display['text'])
-        display['text'] = '0'
-        symbol_pressed = symbol
-        secondary_display['text'] = str(num1) + " " + symbol_pressed
-    elif num1 > 0:
-        equals_button()
-        display['text'] = '0'
-        symbol_pressed = symbol
-        secondary_display['text'] = str(num1) + " " + symbol_pressed
+    global is_result, secondary_display, display
+    is_result = False
+    secondary_display['text'] += str(symbol)
+    display['text'] = '0'
+
+    
         
 
-#Sets second num to be used in math operation & performs math operation based on calc_button perviously selected.
+#Evals equation created in secondary display and returns the result in both displays for future operations.
 def equals_button():
-    global num1, num2, symbol_pressed
-    num2 = float(display['text'])
-    if symbol_pressed == '*':
-        display['text'] = str(num1 * num2)
-        secondary_display['text'] = str(num1) + " " + symbol_pressed + str(num2)
-        num1 = num1 * num2
-    elif symbol_pressed == '/':
-        display['text'] = str(num1 / num2)
-        secondary_display['text'] = str(num1) + " " + symbol_pressed + str(num2)
-        num1 = num1 / num2
-    elif symbol_pressed == '+':
-        display['text'] = str(num1 + num2)
-        secondary_display['text'] = str(num1) + " " + symbol_pressed + str(num2)
-        num1 = num1 + num2
-    elif symbol_pressed == '-':
-        display['text'] = str(num1 - num2)
-        secondary_display['text'] = str(num1) + " " + symbol_pressed + str(num2)
-        num1 = num1 - num2
-    symbol_pressed = ''
+    global display, secondary_display, is_result
+    try:
+        result = eval(secondary_display['text'])
+        display['text'] = str(result)
+        secondary_display['text'] = str(result)
+        is_result = True
+    except ZeroDivisionError:
+        print("Can't divide by Zero")
+        display['text'] = "ERROR CAN'T DIVIDE BY ZERO"
+    
+
+    
 
 #Resets and clears all previous entered info
 def clear_button():
-    global num1, num2, symbol_pressed, display
-    num1 = 0
-    num2 = 0
-    symbol_pressed = ''
+    global display, secondary_display
     display['text'] = '0'
-
-
-# setting global variables:
-
-
-num1 = 0
-num2 = 0
-symbol_pressed = ''
-num_is_stored = False
-
+    secondary_display['text'] = ''
 
 
 # intit window
-
-
 window = tk.Tk()
 window.geometry('400x400')
 
