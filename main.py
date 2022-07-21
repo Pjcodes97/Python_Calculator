@@ -1,5 +1,5 @@
-import tkinter as tk
-
+from tkinter import *
+from tkinter.ttk import *
 #Global variable to adjust Calculator after first eval is performed
 is_result = False
 
@@ -54,97 +54,97 @@ def clear_button():
 
 
 # intit window
-window = tk.Tk()
+window = Tk()
 window.geometry('400x400')
 
 
-display = tk.Label(text='0')
+display = Label(text='0')
 display.grid(column=0,
              row=1,
              columnspan=4)
 
-secondary_display = tk.Label(text='')
+secondary_display = Label(text='')
 secondary_display.grid(column=0,
                         row=0,
                         columnspan=4,
                         sticky='E')
 
-button1 = tk.Button(text='1', command=lambda: button_press(1))
+button1 = Button(text='1', command=lambda: button_press(1))
 button1.grid(column=0,
              row=2,
              sticky='nsew')
 
-button2 = tk.Button(text='2', command=lambda: button_press(2))
+button2 = Button(text='2', command=lambda: button_press(2))
 button2.grid(column=1,
              row=2,
              sticky='nsew')
 
-button3 = tk.Button(text='3', command=lambda: button_press(3))
+button3 = Button(text='3', command=lambda: button_press(3))
 button3.grid(column=2,
              row=2,
              sticky='nsew')
 
-button4 = tk.Button(text='4', command=lambda: button_press(4))
+button4 = Button(text='4', command=lambda: button_press(4))
 button4.grid(column=0,
              row=3,
              sticky='nsew')
 
-button5 = tk.Button(text='5', command=lambda: button_press(5))
+button5 = Button(text='5', command=lambda: button_press(5))
 button5.grid(column=1,
              row=3,
              sticky='nsew')
 
-button6 = tk.Button(text='6', command=lambda: button_press(6))
+button6 = Button(text='6', command=lambda: button_press(6))
 button6.grid(column=2,
              row=3,
              sticky='nsew')
 
-button7 = tk.Button(text='7', command=lambda: button_press(7))
+button7 = Button(text='7', command=lambda: button_press(7))
 button7.grid(column=0,
              row=4,
              sticky='nsew')
 
-button8 = tk.Button(text='8', command=lambda: button_press(8))
+button8 = Button(text='8', command=lambda: button_press(8))
 button8.grid(column=1,
              row=4,
              sticky='nsew')
 
-button9 = tk.Button(text='9', command=lambda: button_press(9))
+button9 = Button(text='9', command=lambda: button_press(9))
 button9.grid(column=2,
              row=4,
              sticky='nsew')
 
-button0 = tk.Button(text='0', command=lambda: button_press(0))
+button0 = Button(text='0', command=lambda: button_press(0))
 button0.grid(column=1,
              row=5,
              sticky='nsew')
 
-plus_button = tk.Button(text='+', command=lambda: calc_button('+'))
+plus_button = Button(text='+', command=lambda: calc_button('+'))
 plus_button.grid(column=3,
                  row=2,
                  sticky='nsew')
 
-minus_button = tk.Button(text='-', command=lambda: calc_button('-'))
+minus_button = Button(text='-', command=lambda: calc_button('-'))
 minus_button.grid(column=3,
                   row=3,
                   sticky='nsew')
 
-multiplication_button = tk.Button(text='*', command=lambda: calc_button('*'))
+multiplication_button = Button(text='*', command=lambda: calc_button('*'))
 multiplication_button.grid(column=3,
                            row=4,
                            sticky='nsew')
 
-division_button = tk.Button(text='/', command=lambda: calc_button('/'))
+division_button = Button(text='/', command=lambda: calc_button('/'))
 division_button.grid(column=3,
                      row=5,
                      sticky='nsew')
 
-equal_button = tk.Button(text='=', command=equals_button)
+equal_button = Button(text='=', command=equals_button)
 equal_button.grid(column=2,
                   row=5,
                   sticky='nsew')
 
-c_button = tk.Button(text='C', command=clear_button)
+c_button = Button(text='C', command=clear_button)
 c_button.grid(column=0,
               row=5,
               sticky='nsew')
