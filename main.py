@@ -56,14 +56,20 @@ def clear_button():
 # intit window
 window = Tk()
 window.geometry('400x400')
+window.title("Calculator")
+
+#Creating styling
+
+s = Style()
+s.configure(".", font=("Arial", 15))
 
 
-display = Label(text='0')
+display = Label(text='0', style="my.TLabel")
 display.grid(column=0,
              row=1,
              columnspan=4)
 
-secondary_display = Label(text='')
+secondary_display = Label(text='', style="my.TLabel")
 secondary_display.grid(column=0,
                         row=0,
                         columnspan=4,
@@ -160,5 +166,6 @@ for column in columns:
     window.columnconfigure(column, weight=2)
 
 window.rowconfigure(0, weight=1)
+
 
 window.mainloop()
